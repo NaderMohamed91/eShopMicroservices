@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E8083269-0367-41E2-A9F2-3EA5ED0DC226}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{E7DC8A44-C5E6-4352-A3B0-A2E3620C0C62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Api", "Services\Catalog\Catalog.Api\Catalog.Api.csproj", "{C4C75A51-5C47-4090-8387-AA2FF4521FC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{54A41026-1917-4E70-9BF9-B654294B9A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{6A735B04-57CF-4417-A823-555F834733F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{C4C75A51-5C47-4090-8387-AA2FF4521FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4C75A51-5C47-4090-8387-AA2FF4521FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4C75A51-5C47-4090-8387-AA2FF4521FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A735B04-57CF-4417-A823-555F834733F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A735B04-57CF-4417-A823-555F834733F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A735B04-57CF-4417-A823-555F834733F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A735B04-57CF-4417-A823-555F834733F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -26,5 +34,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E7DC8A44-C5E6-4352-A3B0-A2E3620C0C62} = {E8083269-0367-41E2-A9F2-3EA5ED0DC226}
 		{C4C75A51-5C47-4090-8387-AA2FF4521FC8} = {E7DC8A44-C5E6-4352-A3B0-A2E3620C0C62}
+		{6A735B04-57CF-4417-A823-555F834733F5} = {54A41026-1917-4E70-9BF9-B654294B9A06}
 	EndGlobalSection
 EndGlobal
