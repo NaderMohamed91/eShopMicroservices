@@ -1,0 +1,8 @@
+
+docker ps --> to listing all containers
+docker exec -it {{container id}} bash --> to run the script with bash terminal
+psql -U {{image name}} --> to run specific database
+
+\l --> to list all existing databases
+\c {{database name}} --> to connect to specific database
+\d --> to list all tables in the database
