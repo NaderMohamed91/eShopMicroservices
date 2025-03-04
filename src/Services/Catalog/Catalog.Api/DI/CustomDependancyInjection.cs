@@ -1,24 +1,38 @@
-﻿using Marten;
-
+﻿using BuildingBlocks.Behaviors;
 namespace Catalog.Api.DI;
 
 public static class CustomDependancyInjection
 {
     public static void AddDependancyInjection(this IServiceCollection services, IConfiguration configuration)
     {
+        var assembly = typeof(Program).Assembly;
 
+        ////
+        /// Add Marten configurations
         services.AddMarten(options =>
         {
             options.Connection(configuration.GetConnectionString("Database")!);
         }).UseLightweightSessions();
 
-        services.AddCarter();
+        ////
+        /// Add MediatR configurations
         services.AddMediatR(config => 
         {
-            config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+            config.RegisterServicesFromAssembly(assembly);
+            ////
+            /// this to add behavior as a pipeline behavior into mediatR
+            config.AddOpenBehavior(typeof(ValidationBehavior<,>)); // validation behavior 
+            config.AddOpenBehavior(typeof(LoggingBehavior<,>));    // logging behavior 
         });
 
+        ////
+        /// Add fluent validations to our requests
+        services.AddValidatorsFromAssembly(assembly);
 
-        //services.AddScoped<IDocumentSession>();
+        ////
+        /// Add carter configurations
+        services.AddCarter();
+
+        services.AddExceptionHandler<CustomExceptionHandler>();
     }
 }

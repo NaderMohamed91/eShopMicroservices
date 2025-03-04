@@ -4,13 +4,19 @@ public record GetProductByCategoryQueryRequest(string category) : IQuery<GetProd
 
 public record GetProductByCategoryQueryResult(IEnumerable<Product> Products);
 
-internal class GetProductByCategoryQueryHandler(ILogger<GetProductByCategoryQueryHandler> logger, IDocumentSession session)
+public class GetProductByCategoryQueryRequestValidator : AbstractValidator<GetProductByCategoryQueryRequest>
+{
+    public GetProductByCategoryQueryRequestValidator()
+    {
+        RuleFor(a => a.category).NotEmpty().WithMessage("Product Category is required");
+    }
+}
+
+internal class GetProductByCategoryQueryHandler(IDocumentSession session)
     : IQueryHandler<GetProductByCategoryQueryRequest, GetProductByCategoryQueryResult>
 {
     public async Task<GetProductByCategoryQueryResult> Handle(GetProductByCategoryQueryRequest query, CancellationToken cancellationToken)
     {
-        logger.LogInformation("GetProductByCategoryQueryHandler.Handle called with {@query}", query);
-
         var products = await session.Query<Product>().Where(a => a.Category.Contains(query.category)).ToListAsync();
 
         return new GetProductByCategoryQueryResult(products);

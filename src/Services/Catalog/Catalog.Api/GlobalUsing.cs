@@ -2,6 +2,10 @@
 global using Marten;
 global using Mapster;
 global using MediatR;
+global using Catalog.Api.DI;
+global using FluentValidation;
 global using Catalog.Api.Models;
 global using BuildingBlocks.CQRS;
 global using Catalog.Api.Exceptions;
+global using BuildingBlocks.Exceptions;
+global using BuildingBlocks.Exceptions.Handler;

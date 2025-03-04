@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Api.Exceptions;
 
-public class ProductNotFoundException : Exception
+public class ProductNotFoundException : NotFoundException
 {
-    public ProductNotFoundException() : base("Peoduct Not found!") {}
+    public ProductNotFoundException(Guid Id) : base("Product", Id) { }
 }
