@@ -1,9 +1,11 @@
 ﻿using BuildingBlocks.Behaviors;
+using Catalog.Api.Data;
 namespace Catalog.Api.DI;
 
 public static class CustomDependancyInjection
 {
-    public static void AddDependancyInjection(this IServiceCollection services, IConfiguration configuration)
+    public static void AddDependancyInjection
+        (this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         var assembly = typeof(Program).Assembly;
 
@@ -13,6 +15,9 @@ public static class CustomDependancyInjection
         {
             options.Connection(configuration.GetConnectionString("Database")!);
         }).UseLightweightSessions();
+
+        if (environment.IsDevelopment())
+            services.InitializeMartenWith<CatalogInitialData>();
 
         ////
         /// Add MediatR configurations

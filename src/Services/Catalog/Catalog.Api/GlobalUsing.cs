@@ -9,3 +9,4 @@ global using BuildingBlocks.CQRS;
 global using Catalog.Api.Exceptions;
 global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Exceptions.Handler;
+global using Marten.Schema;
