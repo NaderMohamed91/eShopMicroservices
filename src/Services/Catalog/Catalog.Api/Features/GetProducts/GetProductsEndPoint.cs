@@ -1,7 +1,6 @@
-﻿
-using Catalog.Api.Features.CreateProduct;
+﻿namespace Catalog.Api.Features.GetProducts;
 
-namespace Catalog.Api.Features.GetProducts;
+public record GetProductsRequest(int? PageNumber, int? PageSize);
 
 public record GetProductsResult(IEnumerable<Product> Products);
 
@@ -9,9 +8,11 @@ public class GetProductsEndPoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/products", async (ISender sender) => 
+        app.MapGet("/products", async ([AsParameters] GetProductsRequest request ,ISender sender) => 
         {
-            var products = await sender.Send(new GetProductsQuery());
+            var query = request.Adapt<GetProductsQuery>();
+
+            var products = await sender.Send(query);
 
             var response = products.Adapt<GetProductsResult>();
 
