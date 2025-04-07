@@ -10,4 +10,6 @@ app.UseExceptionHandler(options => { });
 
 app.MapGet("/", () => "Api is up and running !!!");
 
+app.UseHealthChecks("/health");
+
 app.Run();

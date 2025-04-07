@@ -39,5 +39,9 @@ public static class CustomDependancyInjection
         services.AddCarter();
 
         services.AddExceptionHandler<CustomExceptionHandler>();
+
+        ////
+        /// Add health checks
+        services.AddHealthChecks();
     }
 }
