@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Behaviors;
-using Catalog.Api.Data;
-namespace Catalog.Api.DI;
+﻿namespace Catalog.Api.DI;
 
 public static class CustomDependancyInjection
 {
@@ -9,11 +7,13 @@ public static class CustomDependancyInjection
     {
         var assembly = typeof(Program).Assembly;
 
+        var connectionString = configuration.GetConnectionString("Database")!;
+
         ////
         /// Add Marten configurations
         services.AddMarten(options =>
         {
-            options.Connection(configuration.GetConnectionString("Database")!);
+            options.Connection(connectionString);
         }).UseLightweightSessions();
 
         if (environment.IsDevelopment())
@@ -42,6 +42,7 @@ public static class CustomDependancyInjection
 
         ////
         /// Add health checks
-        services.AddHealthChecks();
+        services.AddHealthChecks()
+                .AddNpgSql(connectionString);
     }
 }
